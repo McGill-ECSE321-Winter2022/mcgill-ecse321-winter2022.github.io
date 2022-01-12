@@ -12,7 +12,7 @@ We will return to the details of Spring later. For now, our only concern is sett
 
 . Use the following settings to generate a spring project:
 +
-image::figs/SpringInit.png[Spring Initialization Settings] 
+image::figs/SpringInit.PNG[Spring Initialization Settings] 
 +
 [NOTE]
 Don't forgot to add the proper dependencies. 
