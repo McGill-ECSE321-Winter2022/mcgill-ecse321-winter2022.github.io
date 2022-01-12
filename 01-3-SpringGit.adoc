@@ -2,7 +2,7 @@
 
 This section touches on the use of Spring Initializer and explores the GitHub Project interface.
 
-==== Spring Boot CLI Installation
+==== Spring Boot Project Initialization
 
 Spring Boot is an open source framework for creating stand-alone Java-based applications. This is accomplished through the Spring Framework, which provides developers a comprehensive programming and configuration model for their Java applications. 
 
@@ -15,7 +15,7 @@ We will return to the details of Spring later. For now, our only concern is sett
 image::figs/SpringInit.PNG[Spring Initialization Settings] 
 +
 [NOTE]
-Don't forgot to add the proper dependencies. 
+Don't forget to add the proper dependencies. 
 
 . Click *Generate* and extract the contents of the zip folder to a location where you can find it later. 
 
@@ -83,17 +83,17 @@ git commit -m "Initial commit of the backend application"
 git push
 ----
 
-==== GitHub Repository Project
+==== GitHub Project Repository
 
 One of the core components of Agile development is being able to manage the development problem space. GitHub projects extends GitHub's utility to make problem space management easy. 
 
 Any repository can be added to a project by selecting the _Create New Project_ button located in the _Project_ tab of the repository. 
 
-image::figs/GitProj5.PNG[]
+image::figs/GitProj5.png[]
 
 Below is the layout of the Basic KanBan Board.
 
-image::figs/GitProj6.PNG[]
+image::figs/GitProj6.png[]
 
 By default there are three columns: *To do*, *In progress* and *Done*. More columns can be added by clicking the add column area. 
 
