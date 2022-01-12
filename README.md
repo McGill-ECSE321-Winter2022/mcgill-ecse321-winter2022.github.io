@@ -1,6 +1,6 @@
-# mcgill-ecse321-fall2021.github.io
+# mcgill-ecse321-winter2022.github.io
 Tutorial notes.
 
-These tutorial notes are for the fall 2021 session of ECSE 321: Introduction to Software Engineering.
+These tutorial notes are for the winter 2022 session of ECSE 321: Introduction to Software Engineering.
 
-The notes are continuously published at: https://mcgill-ecse321-fall2021.github.io/
+The notes are continuously published at: https://mcgill-ecse321-winter2022.github.io/
