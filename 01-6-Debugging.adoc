@@ -37,7 +37,7 @@ The *_suggested potential_* fixes implemented to allow the Event Registration Pr
 
 image::figs/commentsTest.PNG[]
 
-* Modify the _gradle.settings_ file at the root of the project to match the following (The value for the _rootProject.name_ property should match the name of your root directory): +
+* Modify the _settings.gradle_ file at the root of the project to match the following (The value for the _rootProject.name_ property should match the name of your root directory): +
 [source, gradle]
 ----
 rootProject.name = 'eventregistration'
