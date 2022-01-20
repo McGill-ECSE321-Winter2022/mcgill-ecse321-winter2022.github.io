@@ -51,12 +51,12 @@ All that's left to do is test to make sure it works. Go to local working copy of
 
 The result of workflow runs can be seen under the _Actions_ tab of the repository.
 
-image::figs/GitProj2.PNG[Results of workflow run]
+image::figs/GitProj2.png[Results of workflow run]
 
 To gain more insight into a workflow run, select the workflow run from the list . Even more insight can be gleaned from independent jobs by selecting them from the list of jjobs as well.
 
-image::figs/GitProj3.PNG[Workflow run detail]
+image::figs/GitProj3.png[Workflow run detail]
 
-image::figs/GitProj4.PNG[Job details]
+image::figs/GitProj4.png[Job details]
 
 *DEBUGGING EXERCISE:* _Why did the build fail? How would you fix it?_

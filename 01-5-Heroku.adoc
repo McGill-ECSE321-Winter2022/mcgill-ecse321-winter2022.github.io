@@ -1,6 +1,6 @@
 === Heroku
 
-Heroku is a cloud based PaaS (Platform as a Service) that allow the development, deployment and operation of applications. In this course, Heroku will be used as a host for our application backend (this includes the database).
+Heroku is a cloud based PaaS (Platform as a Service) that allows the development, deployment and operation of applications. In this course, Heroku will be used as a host for our application backend (this includes the database).
 
 ==== Preparations
 
