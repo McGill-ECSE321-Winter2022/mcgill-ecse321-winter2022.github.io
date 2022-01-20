@@ -33,7 +33,7 @@ The *_suggested potential_* fixes implemented to allow the Event Registration Pr
 
 * Ensure that the package names are identical in *_EventRegistrationBackendApplication.java_* and *_EventRegistrationBackendApplicationTests.java_*. The former is located in _src>main>java_ and the latter in _src>test>java_ directory.
 
-* Comment out the highlighted lines in the *_EventRegistrationBackendApplicationTests.java_* file (they will be reactivated later):
+* Comment out the highlighted lines (including line 9 containing the @Test annotation) in the *_EventRegistrationBackendApplicationTests.java_* file (they will be reactivated later):
 
 image::figs/commentsTest.PNG[]
 
@@ -47,7 +47,7 @@ include 'EventRegistration-Backend'
 * Add a file named _system.properties_ to the root directory of your repository, and then update it with the following content (to maintain cohesion and smoothness in development, the _java.runtime.version_ property should be the Heroku supported version closest to the version you have installed):
 [source,gradle]
 ----
-java.runtime.version=16.0.2
+java.runtime.version=17
 ----
 
 In the event that there are version discrepencies between members of a group, it could help designate one person to be responsible for deploying the application on Heroku. 
