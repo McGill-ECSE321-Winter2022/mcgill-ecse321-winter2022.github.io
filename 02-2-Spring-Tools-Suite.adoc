@@ -52,7 +52,7 @@ In production, the value of this property should be `none` (instead of `update`)
 
 
 ==== Spring Transactions
-. *Verify* the contents of the `EventRegistrationApplication` class: 
+. *Verify* the contents of the `EventRegistrationBackendApplication` class: 
 + 
 [source,java]
 ----
@@ -65,7 +65,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @SpringBootApplication
-public class EventRegistrationApplication {
+public class EventRegistrationBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EventRegistrationApplication.class, args);

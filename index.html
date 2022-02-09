@@ -1679,7 +1679,7 @@ In production, the value of this property should be <code>none</code> (instead o
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Verify</strong> the contents of the <code>EventRegistrationApplication</code> class:</p>
+<p><strong>Verify</strong> the contents of the <code>EventRegistrationBackendApplication</code> class:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package ca.mcgill.ecse321.eventregistration;
@@ -1691,7 +1691,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @SpringBootApplication
-public class EventRegistrationApplication {
+public class EventRegistrationBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EventRegistrationApplication.class, args);
@@ -1982,7 +1982,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EventRegistrationApplicationTests {
+class EventRegistrationBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
@@ -3176,7 +3176,7 @@ We can straightforwardly manage code coverage using JaCoCo inside Eclipse with n
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-01-24 11:17:22 -0500
+Last updated 2022-02-09 13:10:35 -0500
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
