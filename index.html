@@ -515,6 +515,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#trueevent-registration-application-unit-code-coverage">2.8. Event Registration Application Unit Code Coverage</a></li>
 </ul>
 </li>
+<li><a href="#truefrontend">3. Frontend</a>
+<ul class="sectlevel2">
+<li><a href="#trueinstallation-instructions-vue-js">3.1. Installation Instructions: Vue.js</a>
+<ul class="sectlevel3">
+<li><a href="#trueinstall-vue-js">3.1.1. Install Vue.js</a></li>
+<li><a href="#truegenerate-initial-vue-js-project-content">3.1.2. Generate initial Vue.js project content</a></li>
+<li><a href="#trueinstall-additional-dependencies">3.1.3. Install additional dependencies</a></li>
+<li><a href="#truesetting-up-your-development-server">3.1.4. Setting up your development server</a></li>
+<li><a href="#truecommit-your-work-to-github">3.1.5. Commit your work to Github</a></li>
+</ul>
+</li>
+<li><a href="#truecreate-a-static-vue-js-component">3.2. Create a Static Vue.js Component</a>
+<ul class="sectlevel3">
+<li><a href="#truecreate-a-component-file">3.2.1. Create a component file</a></li>
+<li><a href="#truecreate-a-new-routing-command">3.2.2. Create a new routing command</a></li>
+</ul>
+</li>
+<li><a href="#truevue-js-components-with-dynamic-content">3.3. Vue.js Components with Dynamic Content</a>
+<ul class="sectlevel3">
+<li><a href="#trueadd-data-and-event-handlers">3.3.1. Add data and event handlers</a></li>
+<li><a href="#truecreate-dynamic-data-bindings">3.3.2. Create dynamic data bindings</a></li>
+</ul>
+</li>
+<li><a href="#truecalling-backend-services">3.4. Calling Backend Services</a>
+<ul class="sectlevel3">
+<li><a href="#truecalling-backend-services-in-from-vue-js-components">3.4.1. Calling backend services in from Vue.js components</a></li>
+</ul>
+</li>
+<li><a href="#truebuild-and-travis-ci">3.5. Build and Travis-CI</a></li>
+<li><a href="#trueadditional-steps-in-the-tutorial">3.6. Additional steps in the tutorial</a>
+<ul class="sectlevel3">
+<li><a href="#truemanaging-events">3.6.1. Managing events</a></li>
+<li><a href="#truefurther-documentation">3.6.2. Further documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -3173,10 +3210,973 @@ We can straightforwardly manage code coverage using JaCoCo inside Eclipse with n
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="truefrontend"><a class="anchor" href="#truefrontend"></a>3. Frontend</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="trueinstallation-instructions-vue-js"><a class="anchor" href="#trueinstallation-instructions-vue-js"></a>3.1. Installation Instructions: Vue.js</h3>
+<div class="paragraph">
+<p><a href="https://vuejs.org/v2/guide/">Vue.js</a> is a popular web frontend for building
+user interfacs in Javascript, which is considered to be easier to learn compared to <a href="https://reactjs.org/">React</a> and
+<a href="https://angular.io/">Angular</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="trueinstall-vue-js"><a class="anchor" href="#trueinstall-vue-js"></a>3.1.1. Install Vue.js</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a shell (or run <strong>cmd.exe</strong> in Windows)</p>
+</li>
+<li>
+<p>Check that you successfully installed <strong>node.js</strong> and <strong>npm</strong> e.g. by checking their versions:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ node -v
+v10.21.0 (or higher)
+$ npm -v
+6.14.4 (or higher)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the command line interface (CLI) for Vue: <code>sudo npm install --global vue-cli</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truegenerate-initial-vue-js-project-content"><a class="anchor" href="#truegenerate-initial-vue-js-project-content"></a>3.1.2. Generate initial Vue.js project content</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to your local Git repository of the Event Registration System</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ cd ~/git/eventregistration</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate initial content as follows</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hit <kbd>Enter</kbd> after each line if not indicated otherwise</p>
+</li>
+<li>
+<p>Detailed instructions at <a href="https://github.com/vuejs-templates/webpack" class="bare">https://github.com/vuejs-templates/webpack</a> and <a href="https://bootstrap-vue.js.org/docs" class="bare">https://bootstrap-vue.js.org/docs</a></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ vue init bootstrap-vue/webpack eventregistration-frontend
+? Project name (EventRegistration-Frontend) eventregistration-frontend
+? Project description (A Vue.js project) A Vue.js frontend for Event Registration App
+? Author (Your Name &lt;your.email@provider.com&gt;)
+? Vue build (Use arrow keys):
+&gt; Runtime + Compiler
+  Runtime-only
+? Install vue-router (Y/n): Y
+? Use ESLint to lint your code (Y/n): n
+? Setup unit tests with Karma + Mocha (Y/n) Y
+? Setup e2e tests with Nightwatch (Y/n) Y
+
+vue-cli · Generated "eventregistration-frontend".</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Rename the generated directory to match the naming convention applied for the backend project</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">mv eventregistration-frontend/ EventRegistration-Frontend</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now execute the following commands (one after the other)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ cd EventRegistration-Frontend
+$ npm install
+$ npm run dev</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As a result A sample web page should appear at <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></p>
+</li>
+<li>
+<p>You can stop this development server by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span> in the shell</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trueinstall-additional-dependencies"><a class="anchor" href="#trueinstall-additional-dependencies"></a>3.1.3. Install additional dependencies</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install JQuery and Axios (we will use these dependencies for issuing REST API calls):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">npm install --save jquery
+npm install --save axios</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truesetting-up-your-development-server"><a class="anchor" href="#truesetting-up-your-development-server"></a>3.1.4. Setting up your development server</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We change the default port to <strong>8087</strong> (instead of the default 8080) and
+the default IP address by using a configuration file.
+The rationale behind this step is that other Tomcat servers may already listen at
+the default localhost:8080 port which may clash with our development server.</p>
+</li>
+<li>
+<p>Open <strong>./config/index.js</strong> and add <code>port: 8087</code> to <code>module.exports</code>
+(both <code>build</code> and <code>dev</code> part)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The development server is set up at localhost, i.e. <a href="http://127.0.0.1:8087" class="bare">http://127.0.0.1:8087</a></p>
+</li>
+<li>
+<p>The production server is set up in accordance with the virtual machines</p>
+</li>
+<li>
+<p>We also store the host IP address and port of the backend server
+in similar environment variables (<code>backendHost</code> and <code>backendPort</code>).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="js" class="language-js hljs">module.exports = {
+  build: {
+    env: require('./prod.env'),
+    host: 'eventregistration-frontend-123.herokuapp.com',
+    port: 443,
+    backendHost: 'eventregistration-backend-123.herokuapp.com',
+    backendPort: 443,
+    //...
+  },
+  dev: {
+    env: require('./dev.env'),
+    host: '127.0.0.1',
+    port: 8087,
+    backendHost: '127.0.0.1',
+    backendPort: 8080,
+    //...
+  }
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Open <strong>./build/dev-server.js</strong>, and change the <code>uri</code> assignment as follows:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The original line of code can be commented or deleted.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="js" class="language-js hljs">//var uri = 'http://localhost:' + port
+var host = config.dev.host
+var uri = 'http://' + host + ':' + port</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Start again your development server by <code>npm run dev</code>.
+The same web application should now appear at <a href="http://127.0.0.1:8087/" class="bare">http://127.0.0.1:8087/</a></p>
+</li>
+<li>
+<p>Stop the development server by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truecommit-your-work-to-github"><a class="anchor" href="#truecommit-your-work-to-github"></a>3.1.5. Commit your work to Github</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If everything works then commit your work to your Github repository.</p>
+</li>
+<li>
+<p>Notice that many libraries and files are omitted, which is intentional. Check the <code>.gitignore</code> file for details.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truecreate-a-static-vue-js-component"><a class="anchor" href="#truecreate-a-static-vue-js-component"></a>3.2. Create a Static Vue.js Component</h3>
+<div class="paragraph">
+<p>Vue.js promotes the use of <a href="https://vuejs.org/v2/guide/components.html">components</a>
+which encapsulate GUI elements and their behavior in order to build up rich user interfaces in a modular way. A component consists of</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>template</strong>: A template of (a part of) an HTML document enriched with
+data bindings, conditional expressions, loops, etc.</p>
+</li>
+<li>
+<p><strong>script</strong>: The behavior of the user interface programmed in JavaScript.</p>
+</li>
+<li>
+<p><strong>style</strong>: The customized graphical appearance of HTML document elements.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We will first create a new Vue.js component and then connect it to a backend
+Java Spring service via a Rest API call.</p>
+</div>
+<div class="sect3">
+<h4 id="truecreate-a-component-file"><a class="anchor" href="#truecreate-a-component-file"></a>3.2.1. Create a component file</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We use <code>.</code> below to refer to the <code>EventRegistration-Frontend</code> directory.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new file <strong>EventRegistration.vue</strong> in <strong>./src/components</strong> with  the
+following initial content:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;template&gt;
+&lt;/template&gt;
+&lt;script&gt;
+&lt;/script&gt;
+&lt;style&gt;
+&lt;/style&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create some static HTML content of the template part starting with a <code>&lt;div&gt;</code> element
+corresponding to your component. We</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;template&gt;
+  &lt;div id="eventregistration"&gt;
+    &lt;h2&gt;People&lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+          &lt;td&gt;John&lt;/td&gt;
+          &lt;td&gt;Event to attend&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;
+              &lt;input type="text" placeholder="Person Name"&gt;
+          &lt;/td&gt;
+          &lt;td&gt;
+              &lt;button&gt;Create&lt;/button&gt;
+          &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;p&gt;
+      &lt;span style="color:red"&gt;Error: Message text comes here&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Customize the <code>&lt;style&gt;</code> part with your designated CSS content. A detailed
+CSS reference documentation is available at <a href="https://www.w3schools.com/CSSref/" class="bare">https://www.w3schools.com/CSSref/</a>.
+The final result of that part should like as follows.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="HTML" class="language-HTML hljs">&lt;style&gt;
+  #eventregistration {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+    background: #f2ece8;
+  }
+&lt;/style&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truecreate-a-new-routing-command"><a class="anchor" href="#truecreate-a-new-routing-command"></a>3.2.2. Create a new routing command</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We need to route certain HTTP calls to a specific URL to be handled by
+<strong>EventRegistration.vue</strong>.</p>
+</li>
+<li>
+<p>Open  <strong>./src/router/index.js</strong> and add a new route by extending the existing
+<code>routes</code> property.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Hello',
+      component: Hello
+    },
+    {
+      path: '/app',
+      name: 'EventRegistration',
+      component: EventRegistration
+    }
+  ]
+})</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You should not change the number of spaces used as indentation otherwise you get error messages, if you have LInt enabled in your project.</p>
+</li>
+<li>
+<p>Import the new component <code>EventRegistration.vue</code> at the beginning of <strong>./src/router/index.js</strong> after all existing imports!</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">// add import after all existing imports
+import EventRegistration from '@/components/EventRegistration'</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Start the development server and navigate your browser to <a href="http://127.0.0.1:8087/#/app" class="bare">http://127.0.0.1:8087/#/app</a>.
+Your new Vue.js component should be rendered (with the static HTML content).</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truevue-js-components-with-dynamic-content"><a class="anchor" href="#truevue-js-components-with-dynamic-content"></a>3.3. Vue.js Components with Dynamic Content</h3>
+<div class="sect3">
+<h4 id="trueadd-data-and-event-handlers"><a class="anchor" href="#trueadd-data-and-event-handlers"></a>3.3.1. Add data and event handlers</h4>
+<div class="paragraph">
+<p>Next we add event handling and dynamic content to our EventRegistration.vue component.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create another file <strong>registration.js</strong> in the same folder which will contain
+the Javascript code for the EventRegistration.vue component.</p>
+</li>
+<li>
+<p>Create constructor methods:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">function PersonDto (name) {
+  this.name = name
+  this.events = []
+}
+
+function EventDto (name, date, start, end) {
+  this.name = name
+  this.eventDate = date
+  this.startTime = start
+  this.endTime = end
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add data variables to the export declaration of the component.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">export default {
+  name: 'eventregistration',
+  data () {
+    return {
+      persons: [],
+      newPerson: '',
+      errorPerson: '',
+      response: []
+    }
+  },
+  //...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an initialization function below the data part.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">created: function () {
+    // Test data
+    const p1 = new PersonDto('John')
+    const p2 = new PersonDto('Jill')
+    // Sample initial content
+    this.persons = [p1, p2]
+  },</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add event handling method  <strong>createPerson()</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">methods: {
+    createPerson: function (personName) {
+      // Create a new person and add it to the list of people
+      var p = new PersonDto(personName)
+      this.persons.push(p)
+      // Reset the name field for new people
+      this.newPerson = ''
+    }
+  }</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truecreate-dynamic-data-bindings"><a class="anchor" href="#truecreate-dynamic-data-bindings"></a>3.3.2. Create dynamic data bindings</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open <code>EventRegistration.vue</code> and link the Javascript file as script:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;script src="./registration.js"&gt;
+&lt;/script&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change the static template content for the person list to dynamic bindings:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>We iterate along all people in data property <code>people</code> and
+dynamically print their name by <code>{{ person.name }}</code> (see <a href="https://vuejs.org/v2/guide/list.html">list rendering</a>)</p>
+</li>
+<li>
+<p>We print the (currently empty) list of events to which a person is registered to.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;template&gt;
+  &lt;div id="eventregistration"&gt;
+    &lt;h2&gt;Persons&lt;/h2&gt;
+      &lt;table&gt;
+        &lt;tr v-for="person in persons" &gt;
+            &lt;td&gt;{{ person.name }}&lt;/td&gt;
+            &lt;td&gt;
+              &lt;ul&gt;
+                &lt;li v-for="event in person.events"&gt;
+                  {{event.name}}
+                &lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;!-- ... --&gt;
+    &lt;/table&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Link input field content with data variable <code>newPerson</code> and
+button clicks for <strong>Create Person</strong> for event handler method  <code>createPerson()</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;table&gt;
+  &lt;!-- ... --&gt;
+&lt;tr&gt;
+    &lt;td&gt;
+        &lt;input type="text" v-model="newPerson" placeholder="Person Name"&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+        &lt;button v-bind:disabled="!newPerson" @click="createPerson(newPerson)"&gt;Create Person&lt;/button&gt;
+    &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Bind the error message to the corresponding variable <code>errorPerson</code>
+by extending the <code>&lt;span&gt;</code> tag with <a href="https://vuejs.org/v2/guide/conditional.html">conditional rendering</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The error message will only appear if the data property <code>errorPerson</code> is not empty.</p>
+</li>
+<li>
+<p>You may wish to further refine error handling in case of empty string content
+for <code>newPerson</code>  by adding <code>&amp;&amp; !newPerson</code> to the condition.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;span v-if="errorPerson" style="color:red"&gt;Error: {{errorPerson}} &lt;/span&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Run your frontend application and observe that two people are listed.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truecalling-backend-services"><a class="anchor" href="#truecalling-backend-services"></a>3.4. Calling Backend Services</h3>
+<div class="paragraph">
+<p>Next we change our frontend to issue calls to the backend via the Rest API provided
+by the Java Spring framework. Please refer to the section 3.6.2 where we enabled the Cross-Origin Resource Sharing at the controller level using '@CrossOrigin' notation.</p>
+</div>
+<div class="sect3">
+<h4 id="truecalling-backend-services-in-from-vue-js-components"><a class="anchor" href="#truecalling-backend-services-in-from-vue-js-components"></a>3.4.1. Calling backend services in from Vue.js components</h4>
+<div class="paragraph">
+<p>We need to modify our frontend to make calls to backend services.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open <strong>registration.js</strong> and add the following content to the beginning:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Note that instead of hard-wired IP addresses and ports, details are given in
+a configuration file.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">import axios from 'axios'
+var config = require('../../config')
+
+var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+
+var AXIOS = axios.create({
+  baseURL: backendUrl,
+  headers: { 'Access-Control-Allow-Origin': frontendUrl }
+})</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Now navigate to the <strong>created</strong> function, and replace existing content
+with the following lines:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">  created: function () {
+    // Initializing persons from backend
+    AXIOS.get('/persons')
+    .then(response =&gt; {
+      // JSON responses are automatically parsed.
+      this.persons = response.data
+    })
+    .catch(e =&gt; {
+      this.errorPerson = e
+    })
+    // Initializing events
+    AXIOS.get('/events')
+    .then(response =&gt; {
+      this.events = response.data
+    })
+    .catch(e =&gt; {
+      this.errorEvent = e
+      // this.errors.push(e)
+    })
+  }</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the <strong>createPerson()</strong> method and change its content as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">createPerson: function (personName) {
+      AXIOS.post('/persons/'.concat(personName), {}, {})
+        .then(response =&gt; {
+        // JSON responses are automatically parsed.
+          this.persons.push(response.data)
+          this.errorPerson = ''
+          this.newPerson = ''
+        })
+        .catch(e =&gt; {
+          var errorMsg = e.response.data.message
+          console.log(errorMsg)
+          this.errorPerson = errorMsg
+        })
+    }</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the frontend application and check that</p>
+<div class="ulist">
+<ul>
+<li>
+<p>New people can be added</p>
+</li>
+<li>
+<p>They immediately appear in the people list.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truebuild-and-travis-ci"><a class="anchor" href="#truebuild-and-travis-ci"></a>3.5. Build and Travis-CI</h3>
+<div class="paragraph">
+<p>Travis-CI supports <a href="https://docs.travis-ci.com/user/languages/javascript-with-nodejs">building nodejs projects</a>. However, we do not want to run the default <code>npm test</code> command. Instead, the build should do <code>npm install</code> only.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="trueadditional-steps-in-the-tutorial"><a class="anchor" href="#trueadditional-steps-in-the-tutorial"></a>3.6. Additional steps in the tutorial</h3>
+<div class="sect3">
+<h4 id="truemanaging-events"><a class="anchor" href="#truemanaging-events"></a>3.6.1. Managing events</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>List all events (name, eventDate, startTime, endTime)</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduce an array <strong>events</strong> in the frontend data store</p>
+<div class="paragraph">
+<p>Update your <em>registration.js</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">  data() {
+    return {
+      persons: [],
+      events: [],
+      // ... other data members
+    }
+  },</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Call the appropriate backend service to fill the contents</p>
+<div class="paragraph">
+<p>Update your <em>registration.js</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">  created: function () {
+    // Initializing persons
+    // See: was done above
+
+    // Initializing events
+    AXIOS.get('/events').then(response =&gt; {this.events = response.data}).catch(e =&gt; {this.errorEvent = e});
+  },</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Provide a dynamic list in the component and bind it to <strong>events</strong></p>
+<div class="paragraph">
+<p>Update your <em>EventRegistration.vue</em>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">    &lt;span v-if="errorPerson" style="color:red"&gt;Error: {{errorPerson}}&lt;/span&gt;
+    &lt;!-- This line above is the last line of the section we added in the previous section -- this is only here to ease the navigation in the code --&gt;
+
+&lt;hr&gt;
+  &lt;h2&gt;Events&lt;/h2&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Event Name&lt;/th&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;Start&lt;/th&gt;
+      &lt;th&gt;End&lt;/th&gt;
+      &lt;!--&lt;th&gt;Edit&lt;/th&gt;--&gt;
+    &lt;/tr&gt;
+    &lt;tr v-for="event in events"&gt;
+      &lt;td&gt;{{ event.name }}&lt;/td&gt;
+      &lt;td&gt;{{ event.eventDate }}&lt;/td&gt;
+      &lt;td&gt;{{ event.startTime }}&lt;/td&gt;
+      &lt;td&gt;{{ event.endTime }}&lt;/td&gt;
+      &lt;!--&lt;td&gt;
+        &lt;button v-on:click="updateEvent(event.name)"&gt;Edit&lt;/button&gt;
+      &lt;/td&gt;--&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+      &lt;span v-if="errorEvent" style="color:red"&gt;Error: {{errorEvent}} &lt;/span&gt;
+&lt;hr&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Create a new event (name, date, startTime, endTime)</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Introduce an object <strong>newEvent</strong> in the frontend data store with four properties
+(e.g. name, date, startTime, endTime).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the initial values of these properties to somet value</p>
+<div class="paragraph">
+<p>Update <em>registration.js</em> and add to <code>data()</code> at the top</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">      newEvent: {
+        name: '',
+        eventDate: '2017-12-08',
+        startTime: '09:00',
+        endTime: '11:00'
+      },
+      errorEvent: '',</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Provide a button to initiate creating a new event and provide HTML input fields to set event details</p>
+</li>
+<li>
+<p>Create a call to the appropriate backend service, i.e. <strong>createEvent()</strong></p>
+<div class="paragraph">
+<p>Update <em>EventRegistration.vue</em></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">      &lt;!-- Add this to the bottom of the table created for displaying events --&gt;
+  &lt;tr&gt;
+      &lt;td&gt;
+        &lt;input type="text" v-model="newEvent.name" placeholder="Event Name"&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;input type="date" v-model="newEvent.eventDate" placeholder="YYYY-MM-DD"&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;input type="time" v-model="newEvent.startTime" placeholder="HH:mm"&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;input type="time" v-model="newEvent.endTime" placeholder="HH:mm"&gt;
+      &lt;/td&gt;
+      &lt;td&gt;
+        &lt;button
+          &lt;button v-bind:disabled="!newEvent.name" v-on:click="createEvent(newEvent.name, newEvent.eventDate, newEvent.startTime, newEvent.endTime)"&gt;Create&lt;/button&gt;
+      &lt;/td&gt;
+  &lt;/tr&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Introduce an object <strong>errorEvent</strong> for error message related to event creation</p>
+<div class="paragraph">
+<p>This one has been done for <em>registration.js</em> already (<code>errorEvent</code> in <code>data()</code>)</p>
+</div>
+</li>
+<li>
+<p>Provide corresponding HTML field for displaying the error message (e.g. <code>&lt;span&gt;</code>), and set
+its appearance condition to the content of the error message</p>
+<div class="paragraph">
+<p>Update <em>EventRegistration.vue</em>: add the following code to the event table</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">    &lt;span v-if="errorEvent" style="color:red"&gt;Error: {{errorEvent}} &lt;/span&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Register a person to an event</strong> (when a new event should occur in the
+list of events printed next to a person)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide a selection of people</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You need a corresponding data variable (e.g. <strong>selectedPerson</strong>)</p>
+</li>
+<li>
+<p>You can use the HTML <code>&lt;select v-model="selectedPerson"&gt;</code> tag where each
+option (<code>&lt;option&gt;</code> tag with <code>v-for</code> Vue.js parameter) is filled dynamically from
+the list of people.</p>
+</li>
+<li>
+<p><strong>Hint:</strong> You can add a first disabled option as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;option disabled value=""&gt;Please select one&lt;/option&gt;</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Provide a selection of events in a similar way.</p>
+</li>
+<li>
+<p>Provide a button to initiate registration</p>
+</li>
+<li>
+<p>Enable the button only if both a person and an event are selected</p>
+<div class="paragraph">
+<p>The solution for the above bullet points (goes to <em>EventRegistration.vue</em>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">  &lt;hr&gt;
+    &lt;h2&gt;Registrations&lt;/h2&gt;
+    &lt;label&gt;Person:
+      &lt;select v-model="selectedPerson"&gt;
+        &lt;option disabled value=""&gt;Please select one&lt;/option&gt;
+        &lt;option v-for="person in persons" &gt;
+          {{ person.name }}
+        &lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;label&gt;Event:
+      &lt;select v-model="selectedEvent"&gt;
+        &lt;option disabled value=""&gt;Please select one&lt;/option&gt;
+        &lt;option v-for="event in events" &gt;
+          {{ event.name }}
+        &lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;button v-bind:disabled="!selectedPerson || !selectedEvent" @click="registerEvent(selectedPerson,selectedEvent)"&gt;Register&lt;/button&gt;
+    &lt;hr&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the register method in <em>registration.js</em>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">        registerEvent: function (personName, eventName) {
+      var indexEv = this.events.map(x =&gt; x.name).indexOf(eventName)
+      var indexPart = this.persons.map(x =&gt; x.name).indexOf(personName)
+      var person = this.persons[indexPart]
+      var event = this.events[indexEv]
+      AXIOS.post('/register', {},
+        {params: {
+          person: person.name,
+          event: event.name}})
+      .then(response =&gt; {
+        // Update appropriate DTO collections
+        person.events.push(event)
+        this.selectedPerson = ''
+        this.selectedEvent = ''
+        this.errorRegistration = ''
+      })
+      .catch(e =&gt; {
+        var errorMsg = e
+        console.log(errorMsg)
+        this.errorRegistration = errorMsg
+      })
+    },</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To run your applicaiton, use <code>npm install</code> and <code>npm run dev</code></p>
+</li>
+<li>
+<p>See <a href="https://github.com/Rijul5/eventregistration3" class="bare">https://github.com/Rijul5/eventregistration3</a> for the completed solution</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truefurther-documentation"><a class="anchor" href="#truefurther-documentation"></a>3.6.2. Further documentation</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Vue.js guide: <a href="https://vuejs.org/v2/guide/" class="bare">https://vuejs.org/v2/guide/</a></p>
+</li>
+<li>
+<p>Vue.js API: <a href="https://vuejs.org/v2/api/" class="bare">https://vuejs.org/v2/api/</a></p>
+</li>
+<li>
+<p>Build commands: <a href="http://vuejs-templates.github.io/webpack/commands.html" class="bare">http://vuejs-templates.github.io/webpack/commands.html</a></p>
+</li>
+<li>
+<p>Vue.js and Webpack integration: <a href="http://vuejs-templates.github.io/webpack/env.html" class="bare">http://vuejs-templates.github.io/webpack/env.html</a></p>
+</li>
+<li>
+<p>Html-Webpack: <a href="https://github.com/jantimon/html-webpack-plugin" class="bare">https://github.com/jantimon/html-webpack-plugin</a></p>
+</li>
+<li>
+<p>Vue Router: <a href="https://github.com/vuejs/vue-router" class="bare">https://github.com/vuejs/vue-router</a></p>
+</li>
+<li>
+<p>Vue Router tutorial: <a href="https://scotch.io/tutorials/getting-started-with-vue-router" class="bare">https://scotch.io/tutorials/getting-started-with-vue-router</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-09 13:10:35 -0500
+Last updated 2022-03-14 10:57:03 -0400
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

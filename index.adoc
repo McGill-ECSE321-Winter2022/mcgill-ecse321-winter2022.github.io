@@ -13,6 +13,6 @@ include::01-PMT-TC.adoc[]
 
 include::02-Backend.adoc[]
 
-//include::03-Frontend.adoc[]
+include::03-Frontend.adoc[]
 
 //include::04-Android.adoc[] 
