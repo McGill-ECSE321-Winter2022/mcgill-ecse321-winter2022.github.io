@@ -543,11 +543,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#truecalling-backend-services-in-from-vue-js-components">3.4.1. Calling backend services in from Vue.js components</a></li>
 </ul>
 </li>
-<li><a href="#truebuild-and-travis-ci">3.5. Build and Travis-CI</a></li>
-<li><a href="#trueadditional-steps-in-the-tutorial">3.6. Additional steps in the tutorial</a>
+<li><a href="#trueadditional-steps-in-the-tutorial">3.5. Additional steps in the tutorial</a>
 <ul class="sectlevel3">
-<li><a href="#truemanaging-events">3.6.1. Managing events</a></li>
-<li><a href="#truefurther-documentation">3.6.2. Further documentation</a></li>
+<li><a href="#truemanaging-events">3.5.1. Managing events</a></li>
+<li><a href="#truefurther-documentation">3.5.2. Further documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#trueandroid">4. Android</a>
+<ul class="sectlevel2">
+<li><a href="#truesetting-up-your-repository">4.1. Setting up your repository</a></li>
+<li><a href="#truecreate-an-android-project">4.2. Create an Android project</a></li>
+<li><a href="#truedeveloping-for-android-part-1">4.3. Developing for Android: Part 1</a>
+<ul class="sectlevel3">
+<li><a href="#truedeveloping-the-view-layout">4.3.1. Developing the View Layout</a></li>
+<li><a href="#trueconnecting-to-backend-via-restful-service-calls">4.3.2. Connecting to backend via RESTful service calls</a></li>
+</ul>
+</li>
+<li><a href="#truerunning-and-testing-the-application-on-a-virtual-device">4.4. Running and Testing the Application on a Virtual Device</a></li>
+<li><a href="#truedeveloping-for-android-part-2">4.5. Developing for Android (Part 2)</a>
+<ul class="sectlevel3">
+<li><a href="#truecreate-helper-classes">4.5.1. Create helper classes</a></li>
+<li><a href="#trueupdate-view-definition">4.5.2. Update view definition</a></li>
+<li><a href="#trueinitialization-on-application-launch">4.5.3. Initialization on application launch</a></li>
+<li><a href="#truereactions-to-updated-data">4.5.4. Reactions to updated data</a></li>
 </ul>
 </li>
 </ul>
@@ -3239,7 +3259,7 @@ $ npm -v
 </div>
 </li>
 <li>
-<p>Install the command line interface (CLI) for Vue: <code>sudo npm install --global vue-cli</code></p>
+<p>Install the command line interface (CLI) for Vue: <code>npm install -g @vue-cli</code></p>
 </li>
 </ol>
 </div>
@@ -3693,11 +3713,11 @@ dynamically print their name by <code>{{ person.name }}</code> (see <a href="htt
   &lt;div id="eventregistration"&gt;
     &lt;h2&gt;Persons&lt;/h2&gt;
       &lt;table&gt;
-        &lt;tr v-for="person in persons" &gt;
+        &lt;tr v-for="person in persons" :key=person.name&gt;
             &lt;td&gt;{{ person.name }}&lt;/td&gt;
             &lt;td&gt;
               &lt;ul&gt;
-                &lt;li v-for="event in person.events"&gt;
+                &lt;li v-for="event in person.events" :key=event.name&gt;
                   {{event.name}}
                 &lt;/li&gt;
               &lt;/ul&gt;
@@ -3864,15 +3884,9 @@ with the following lines:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="truebuild-and-travis-ci"><a class="anchor" href="#truebuild-and-travis-ci"></a>3.5. Build and Travis-CI</h3>
-<div class="paragraph">
-<p>Travis-CI supports <a href="https://docs.travis-ci.com/user/languages/javascript-with-nodejs">building nodejs projects</a>. However, we do not want to run the default <code>npm test</code> command. Instead, the build should do <code>npm install</code> only.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="trueadditional-steps-in-the-tutorial"><a class="anchor" href="#trueadditional-steps-in-the-tutorial"></a>3.6. Additional steps in the tutorial</h3>
+<h3 id="trueadditional-steps-in-the-tutorial"><a class="anchor" href="#trueadditional-steps-in-the-tutorial"></a>3.5. Additional steps in the tutorial</h3>
 <div class="sect3">
-<h4 id="truemanaging-events"><a class="anchor" href="#truemanaging-events"></a>3.6.1. Managing events</h4>
+<h4 id="truemanaging-events"><a class="anchor" href="#truemanaging-events"></a>3.5.1. Managing events</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -4005,7 +4019,6 @@ with the following lines:</p>
         &lt;input type="time" v-model="newEvent.endTime" placeholder="HH:mm"&gt;
       &lt;/td&gt;
       &lt;td&gt;
-        &lt;button
           &lt;button v-bind:disabled="!newEvent.name" v-on:click="createEvent(newEvent.name, newEvent.eventDate, newEvent.startTime, newEvent.endTime)"&gt;Create&lt;/button&gt;
       &lt;/td&gt;
   &lt;/tr&gt;</code></pre>
@@ -4143,7 +4156,7 @@ the list of people.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="truefurther-documentation"><a class="anchor" href="#truefurther-documentation"></a>3.6.2. Further documentation</h4>
+<h4 id="truefurther-documentation"><a class="anchor" href="#truefurther-documentation"></a>3.5.2. Further documentation</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4173,10 +4186,1193 @@ the list of people.</p>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="trueandroid"><a class="anchor" href="#trueandroid"></a>4. Android</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="truesetting-up-your-repository"><a class="anchor" href="#truesetting-up-your-repository"></a>4.1. Setting up your repository</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the directory where the EventRegistration application resides, e.g., <em>/home/user/git/eventregistration</em></p>
+</li>
+<li>
+<p>Initialize a new, orphan branch with the following commands</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">git checkout --orphan android
+git reset
+rm -rf ./* .gitignore</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+One-liner command that does the same for those who like living dangerously:<br>
+<code>git checkout --orphan android &amp;&amp; git reset &amp;&amp; rm -rf ./* .gitignore</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truecreate-an-android-project"><a class="anchor" href="#truecreate-an-android-project"></a>4.2. Create an Android project</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start a new Android project
+<span class="image"><img src="figs/Android-StartNewProject.png" alt="Start new Android project"></span></p>
+</li>
+<li>
+<p>Select a <strong>Basic Activity</strong> and click <strong>Next</strong></p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/Android-BasicActivity.png" alt="Select basic activity"></span></p>
+</div>
+</li>
+<li>
+<p>Specify project details and click on <strong>Finish</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Application name: <strong>EventRegistration-Android</strong></p>
+</li>
+<li>
+<p>Package name: <code>ca.mcgill.ecse321.eventregistration</code></p>
+</li>
+<li>
+<p>Project location: create the project within the prepared working copy of the git repository say, <em>/home/user/git/eventregistration/EventRegistration-Android</em>`)</p>
+</li>
+<li>
+<p>Select <em>Java</em> as language</p>
+</li>
+<li>
+<p>Click on <strong>Finish</strong></p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/Android-ProjectSettings.png" alt="Target platform settings"></span></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wait until the project is built by Gradle, this takes a minute or two</p>
+</li>
+<li>
+<p>Optional step.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Optionally, to setup version control integration, go to <em>File/Settings&#8230;&#8203;/Version Control</em> and add the repository as Git root to the project settings<br>
+<span class="image"><img src="figs/android-studio-git-root.png" alt="Set Git root location"></span><br>
+Then, you can issue Git commands from the <em>VCS</em> menu in Android Studio while developing the application. Regardless whether you complete this step or not, you can still use git from the command line, since the project is created in the working directory of your git repository.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Select the <strong>Project</strong> view in the left pane (instead of the default <strong>Android</strong> view) and
+observe three files:</p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/Android-SelectProjectView.png" alt="Project view"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>MainActivity.java</strong>: application code is written here (located in
+<strong>app/src/main/java</strong>)</p>
+</li>
+<li>
+<p><strong>content_main.xml</strong>: layout specifications of the UI are provided in XML
+(located in <em>app/src/main/res/layout</em>)</p>
+</li>
+<li>
+<p><strong>strings.xml</strong>: naming of resources
+(located in <em>app/src/main/res/values</em>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Include a dependency for network communication by adding the following line to the <code>build.gradle</code> file located in the <em>app</em>
+folder to the end within the <code>dependencies{ &#8230;&#8203; }</code> part (see figure, but the content is different).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="gradle" class="language-gradle hljs">    implementation 'com.loopj.android:android-async-http:1.4.9'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open the <strong>AndroidManifest.xml</strong> file (located in <code>app/src/main</code> within the Android project), and add the following XML tag for setting permissions appropriately (before the existing <code>&lt;application&gt;</code> tag)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ca.mcgill.ecse321.eventregistration"&gt;
+
+    &lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+    &lt;!-- Existing content with &lt;application&gt; tag --&gt;
+&lt;/manifest&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>As the gradle build file has changed, click on the <strong>Sync</strong> link.</p>
+</li>
+<li>
+<p>Re-build the project by <strong>Build | Make Project</strong>  if still needed.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truedeveloping-for-android-part-1"><a class="anchor" href="#truedeveloping-for-android-part-1"></a>4.3. Developing for Android: Part 1</h3>
+<div class="sect3">
+<h4 id="truedeveloping-the-view-layout"><a class="anchor" href="#truedeveloping-the-view-layout"></a>4.3.1. Developing the View Layout</h4>
+<div class="paragraph">
+<p>In the next steps, we will develop a simple GUI as the view for the mobile
+EventRegistration app with (1) one text field for specifying the name of a person,
+and (2) one <strong>Add Person</strong> button</p>
+</div>
+<div class="paragraph">
+<p>The GUI will look like as depicted below.<br>
+<span class="image"><img src="figs/Android-SimpleGUI.png" alt="Simple GUI"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>content_main.xml</strong> file, which contains a default <strong>Hello World</strong>
+text.</p>
+</li>
+<li>
+<p>Replace the highlighted default content with the following XML tags.<br>
+<span class="image"><img src="figs/Android-HelloWorld.png" alt="Android Hello World"></span><br></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    &lt;LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"&gt;
+
+        &lt;TextView
+            android:id="@+id/error"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:text=""
+            android:textColor="#FF0000"/&gt;
+
+        &lt;EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newperson_name"
+            android:hint="@string/newperson_hint"/&gt;
+
+        &lt;Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/newperson_button"
+            android:onClick="addPerson"/&gt;
+    &lt;/LinearLayout&gt;</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>LinearLayout</strong> declares a vertical layout to hold the GUI elements;</p>
+</li>
+<li>
+<p><strong>EditText</strong> adds a textfield to enter the name of the person;</p>
+</li>
+<li>
+<p><strong>Button</strong> provides a button to add a person.</p>
+<div class="paragraph">
+<p>Some erroneous tags are marked in red, which will be corrected in the following
+steps.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="truespecifying-a-text-field-and-a-button"><a class="anchor" href="#truespecifying-a-text-field-and-a-button"></a>Specifying a text field and a button</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>We place new literals in the <strong>strings.xml</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;string name="newperson_hint"&gt;Who?&lt;/string&gt;
+&lt;string name="newperson_button"&gt;Add Person&lt;/string&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Save <strong>strings.xml</strong></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="trueobserving-the-view"><a class="anchor" href="#trueobserving-the-view"></a>Observing the view</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Save the file <strong>content_main.xml</strong>.</p>
+</li>
+<li>
+<p>Click on the <strong>Design</strong> tab to check the graphical preview of the app.</p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/Android-ContentMainGUI.png" alt="Graphical content view"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trueconnecting-to-backend-via-restful-service-calls"><a class="anchor" href="#trueconnecting-to-backend-via-restful-service-calls"></a>4.3.2. Connecting to backend via RESTful service calls</h4>
+<div class="paragraph">
+<p>As a next step, we define a view depicted below and add Java code to provide behavior for the view, e.g. what
+should happen when the different buttons are clicked.
+The key interactions of our application are the following:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>What to do when the application is launched? (<code>onCreate()</code>)</p>
+</li>
+<li>
+<p>What to do when a button is clicked? (<code>addPerson()</code>)</p>
+</li>
+</ol>
+</div>
+<div class="sect4">
+<h5 id="truecreate-a-utility-class-for-communicating-with-http-messages"><a class="anchor" href="#truecreate-a-utility-class-for-communicating-with-http-messages"></a>Create a utility class for communicating with HTTP messages</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure you have the <code>implementation 'com.loopj.android:android-async-http:1.4.9'</code> dependency (among others) in the <code>build.gradle</code> file for the <code>app</code> module (see the section on project setup for more details)</p>
+</li>
+<li>
+<p>Create the <code>HttpUtils</code> class in the <code>ca.mcgill.ecse321.eventregistration</code> package and add missing imports as required with <span class="keyseq"><kbd>Alt</kbd>+<kbd>Enter</kbd></span></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You may need to wait a few minutes after dependencies have been resolved to allow the IDE to index classes
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class HttpUtils {
+    public static final String DEFAULT_BASE_URL = "https://eventregistration-backend-123.herokuapp.com/";
+
+    private static String baseUrl;
+    private static AsyncHttpClient client = new AsyncHttpClient();
+
+    static {
+        baseUrl = DEFAULT_BASE_URL;
+    }
+
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public static void setBaseUrl(String baseUrl) {
+        HttpUtils.baseUrl = baseUrl;
+    }
+
+    public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.get(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.post(getAbsoluteUrl(url), params, responseHandler);
+    }
+
+    public static void getByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.get(url, params, responseHandler);
+    }
+
+    public static void postByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.post(url, params, responseHandler);
+    }
+
+    private static String getAbsoluteUrl(String relativeUrl) {
+        return baseUrl + relativeUrl;
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="truefurther-helper-methods"><a class="anchor" href="#truefurther-helper-methods"></a>Further helper methods</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>MainActivity.java</strong> file.</p>
+</li>
+<li>
+<p>Add a new attribute to the beginning of the class for error handling.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">// ...
+public class MainActivity extends AppCompatActivity {
+  private String error = null;
+
+  // ...
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the <code>refreshErrorMessage()</code> method to display the error message on the screen, if there is any.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Again, add imports with <span class="keyseq"><kbd>Alt</kbd>+<kbd>Enter</kbd></span> (import is needed for <code>TextView</code>)
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">private void refreshErrorMessage() {
+  // set the error message
+  TextView tvError = (TextView) findViewById(R.id.error);
+  tvError.setText(error);
+
+  if (error == null || error.length() == 0) {
+    tvError.setVisibility(View.GONE);
+  } else {
+    tvError.setVisibility(View.VISIBLE);
+  }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add code to initialize the application in the <code>onCreate()</code> method (after the auto-generated code).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Override
+protected void onCreate(Bundle savedInstanceState) {
+  // ...
+  // INSERT TO END OF THE METHOD AFTER AUTO-GENERATED CODE
+  // initialize error message text view
+  refreshErrorMessage();
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="truecreating-a-handler-for-add-person-button"><a class="anchor" href="#truecreating-a-handler-for-add-person-button"></a>Creating a handler for Add Person button</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Implement the <code>addPerson()</code> method as follows</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public void addPerson(View v) {
+  error = "";
+  final TextView tv = (TextView) findViewById(R.id.newperson_name);
+  HttpUtils.post("persons/" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
+      @Override
+      public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+          refreshErrorMessage();
+          tv.setText("");
+      }
+      @Override
+      public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+          try {
+              error += errorResponse.get("message").toString();
+          } catch (JSONException e) {
+              error += e.getMessage();
+          }
+          refreshErrorMessage();
+      }
+  });
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Import the missing classes again with <span class="keyseq"><kbd>Alt</kbd>+<kbd>Enter</kbd></span>. There are multiple <code>Header</code> classes available, you need to import the <code>cz.msebera.android.httpclient.Header</code> class.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truerunning-and-testing-the-application-on-a-virtual-device"><a class="anchor" href="#truerunning-and-testing-the-application-on-a-virtual-device"></a>4.4. Running and Testing the Application on a Virtual Device</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the Spring backend application on Heroku, while ensure that the <code>DEFAULT_BASE_URL</code> in <code>HttpUtils</code> is configured accordingly.<br></p>
+</li>
+<li>
+<p>Click on the <em>AVD manager</em> button in Android Studio near the top right corner of the window</p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/Android-AVD.png" alt="Open terminal"></span></p>
+</div>
+</li>
+<li>
+<p>Add a new device with default settings.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You might be asked to download emulator files. If this happens, click OK.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Start/Debug the application using the buttons highlighted on the figure below</p>
+<div class="paragraph">
+<p><span class="image"><img src="figs/android-studio-deploy.png" alt="Select system image"></span></p>
+</div>
+</li>
+<li>
+<p>After you select the device (in this case Nexus 5X) as deployment target, the application will automatically be deployed and started within an Android VM, and it is ready to use. Be patient, deployment and startup may take a few seconds.</p>
+</li>
+<li>
+<p>Supply a name for a new person, then try adding it. Upon successful completion, the text field and the error message should clear.</p>
+</li>
+<li>
+<p>Supply the same name in the text field and then try adding the person. You should get an error message on screen "Person has already been created".</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="truedeveloping-for-android-part-2"><a class="anchor" href="#truedeveloping-for-android-part-2"></a>4.5. Developing for Android (Part 2)</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can use the <a href="https://eventregistration-backend-123.herokuapp.com" class="bare">https://eventregistration-backend-123.herokuapp.com</a> backend URL for the event registration example in the <code>HttpUtils</code> class.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As a next step, we extend the view and its behavior. Key interactions of our application added in this phase are the following:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>What to do when the application is launched? (<code>onCreate()</code>)</p>
+</li>
+<li>
+<p>What to do when application data is updated? (<code>refreshLists()</code>)</p>
+</li>
+<li>
+<p>What to do when a button is clicked? (<code>addEvent()</code>, and <code>register()</code>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The expected layout of the application:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="figs/android-studio-main-layout.png" alt="android studio main layout"></span></p>
+</div>
+<div class="sect3">
+<h4 id="truecreate-helper-classes"><a class="anchor" href="#truecreate-helper-classes"></a>4.5.1. Create helper classes</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the classes included in the next two steps within the <code>ca.mcgill.ecse321.eventregistration</code> package</p>
+</li>
+<li>
+<p>Create a new class called <code>DatePickerFragment</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Import missing classes with <span class="keyseq"><kbd>Alt</kbd>+<kbd>Enter</kbd></span>. If the import option offers multiple classes, choose the ones that are not deprecated.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class DatePickerFragment extends DialogFragment
+        implements DatePickerDialog.OnDateSetListener {
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        // Use the current date as the default date in the picker
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        // Parse the existing time from the arguments
+        Bundle args = getArguments();
+        if (args != null) {
+            year = args.getInt("year");
+            month = args.getInt("month");
+            day = args.getInt("day");
+        }
+
+        // Create a new instance of DatePickerDialog and return it
+        return new DatePickerDialog(getActivity(), this, year, month, day);
+    }
+
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        MainActivity myActivity = (MainActivity)getActivity();
+        myActivity.setDate(getArguments().getInt("id"), day, month, year);
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a new class called <code>TimePickerFragment</code></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The method <code>setTime</code> is missing from the <code>MainActivity</code> class and will be added later (i.e., the error message which complains that this method is missing is normal)
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class TimePickerFragment extends DialogFragment
+        implements TimePickerDialog.OnTimeSetListener {
+
+    String label;
+
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        int hour = 0;
+        int minute = 0;
+
+        // Parse the existing time from the arguments
+        Bundle args = getArguments();
+        if (args != null) {
+            hour = args.getInt("hour");
+            minute = args.getInt("minute");
+        }
+
+        // Create a new instance of TimePickerDialog and return it
+        return new TimePickerDialog(getActivity(), this, hour, minute,
+                DateFormat.is24HourFormat(getActivity()));
+    }
+
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        MainActivity myActivity = (MainActivity)getActivity();
+        myActivity.setTime(getArguments().getInt("id"), hourOfDay, minute);
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add the following helper methods within the <code>MainActivity</code> class to support date and time pickers</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">private Bundle getTimeFromLabel(String text) {
+    Bundle rtn = new Bundle();
+    String comps[] = text.toString().split(":");
+    int hour = 12;
+    int minute = 0;
+
+    if (comps.length == 2) {
+        hour = Integer.parseInt(comps[0]);
+        minute = Integer.parseInt(comps[1]);
+    }
+
+    rtn.putInt("hour", hour);
+    rtn.putInt("minute", minute);
+
+    return rtn;
+}
+
+private Bundle getDateFromLabel(String text) {
+    Bundle rtn = new Bundle();
+    String comps[] = text.toString().split("-");
+    int day = 1;
+    int month = 1;
+    int year = 1;
+
+    if (comps.length == 3) {
+        day = Integer.parseInt(comps[0]);
+        month = Integer.parseInt(comps[1]);
+        year = Integer.parseInt(comps[2]);
+    }
+
+    rtn.putInt("day", day);
+    rtn.putInt("month", month-1);
+    rtn.putInt("year", year);
+
+    return rtn;
+}
+
+public void showTimePickerDialog(View v) {
+    TextView tf = (TextView) v;
+    Bundle args = getTimeFromLabel(tf.getText().toString());
+    args.putInt("id", v.getId());
+
+    TimePickerFragment newFragment = new TimePickerFragment();
+    newFragment.setArguments(args);
+    newFragment.show(getSupportFragmentManager(), "timePicker");
+}
+
+public void showDatePickerDialog(View v) {
+    TextView tf = (TextView) v;
+    Bundle args = getDateFromLabel(tf.getText().toString());
+    args.putInt("id", v.getId());
+
+    DatePickerFragment newFragment = new DatePickerFragment();
+    newFragment.setArguments(args);
+    newFragment.show(getSupportFragmentManager(), "datePicker");
+}
+
+public void setTime(int id, int h, int m) {
+    TextView tv = (TextView) findViewById(id);
+    tv.setText(String.format("%02d:%02d", h, m));
+}
+
+public void setDate(int id, int d, int m, int y) {
+    TextView tv = (TextView) findViewById(id);
+    tv.setText(String.format("%02d-%02d-%04d", d, m + 1, y));
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trueupdate-view-definition"><a class="anchor" href="#trueupdate-view-definition"></a>4.5.2. Update view definition</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The corresponding complete view definition in the <code>content_main.xml</code> file is the following. We are using &lt;RelativeLayout&gt; now:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ca.mcgill.ecse321.eventregistration.MainActivity"
+    tools:showIn="@layout/activity_main"&gt;
+
+
+    &lt;LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"&gt;
+        &lt;TextView
+            android:id="@+id/error"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:text=""
+            android:textColor="#FF0000"/&gt;
+
+        &lt;LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"&gt;
+            &lt;LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"&gt;
+                &lt;LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"&gt;
+
+                    &lt;TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/personspinner_label"/&gt;
+
+                    &lt;Spinner
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="end"
+                        android:prompt="@string/name_prompt"
+                        android:id="@+id/personspinner"/&gt;
+
+                &lt;/LinearLayout&gt;
+
+                &lt;LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"&gt;
+
+                    &lt;TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/eventspinner_label"/&gt;
+
+                    &lt;Spinner
+                        android:id="@+id/eventspinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:prompt="@string/name_prompt"
+                        android:layout_margin="0dp"/&gt;
+
+                &lt;/LinearLayout&gt;
+
+            &lt;/LinearLayout&gt;
+            &lt;LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"&gt;
+                &lt;Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/register_button"
+                    android:onClick="register"
+                    android:layout_gravity="start"/&gt;
+                &lt;Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/refresh_button"
+                    android:onClick="refreshLists"
+                    android:layout_gravity="end"/&gt;
+            &lt;/LinearLayout&gt;
+        &lt;/LinearLayout&gt;
+
+
+        &lt;View
+            android:layout_height="2dp"
+            android:layout_width="fill_parent"
+            android:background="#16552e"/&gt;
+
+        &lt;LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"&gt;
+            &lt;EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/newperson_name"
+                android:hint="@string/newperson_hint"/&gt;
+            &lt;Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/newperson_button"
+                android:onClick="addPerson"/&gt;
+        &lt;/LinearLayout&gt;
+
+        &lt;View
+            android:layout_height="2dp"
+            android:layout_width="fill_parent"
+            android:background="#16552e"/&gt;
+
+        &lt;LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"&gt;
+            &lt;EditText android:id="@+id/newevent_name"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:hint="@string/newevent_hint"/&gt;
+            &lt;LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/newevent_date_label"/&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/newevent_date_first"
+                    android:layout_gravity="end"
+                    android:id="@+id/newevent_date"
+                    android:onClick="showDatePickerDialog"/&gt;
+            &lt;/LinearLayout&gt;
+
+            &lt;LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/starttime_label"/&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/starttime_first"
+                    android:layout_gravity="end"
+                    android:id="@+id/starttime"
+                    android:onClick="showTimePickerDialog"/&gt;
+            &lt;/LinearLayout&gt;
+
+            &lt;LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/endtime_label"/&gt;
+                &lt;TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/endtime_first"
+                    android:layout_gravity="end"
+                    android:id="@+id/endtime"
+                    android:onClick="showTimePickerDialog"/&gt;
+            &lt;/LinearLayout&gt;
+            &lt;Button
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/newevent_button"
+                android:layout_gravity="end"
+                android:onClick="addEvent"/&gt;
+        &lt;/LinearLayout&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/RelativeLayout&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The complete string definitions go in the <code>res/values/strings.xml</code> resource</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;resources&gt;
+    &lt;string name="app_name"&gt;Event Registration&lt;/string&gt;
+    &lt;string name="action_settings"&gt;Settings&lt;/string&gt;
+    &lt;string name="newperson_hint"&gt;Who?&lt;/string&gt;
+    &lt;string name="newperson_button"&gt;Add Person&lt;/string&gt;
+    &lt;string name="newevent_date_label"&gt;Date?&lt;/string&gt;
+    &lt;string name="personspinner_label"&gt;Person?&lt;/string&gt;
+    &lt;string name="eventspinner_label"&gt;Event?&lt;/string&gt;
+    &lt;string name="starttime_label"&gt;Start time?&lt;/string&gt;
+    &lt;string name="endtime_label"&gt;End time?&lt;/string&gt;
+    &lt;string name="newevent_date_first"&gt;01-01-2017&lt;/string&gt;
+    &lt;string name="newevent_button"&gt;Add Event&lt;/string&gt;
+    &lt;string name="starttime_first"&gt;10:00&lt;/string&gt;
+    &lt;string name="endtime_first"&gt;11:00&lt;/string&gt;
+    &lt;string name="register_button"&gt;Register&lt;/string&gt;
+    &lt;string name="newevent_hint"&gt;Event name?&lt;/string&gt;
+    &lt;string name="refresh_button"&gt;Refresh lists&lt;/string&gt;
+    &lt;string name="name_prompt"&gt;Select name&lt;/string&gt;
+&lt;/resources&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: add a <em>Register</em> button to allow registering a selected person to a selected event (call the <code>register()</code> method when clicked - this is to be implemented in the upcoming steps)</p>
+</li>
+<li>
+<p><strong>TODO</strong>: add a <em>Refresh Lists</em> button that refreshes the contents of the event and person spinners (call the <code>refreshLists()</code> method when clicked)</p>
+</li>
+<li>
+<p><strong>TODO</strong>: add a label with text <em>End?</em> below the <em>Start?</em> label</p>
+</li>
+<li>
+<p><strong>TODO</strong>: add a time picker to select the end time of a new event</p>
+</li>
+<li>
+<p><strong>TODO</strong>: add an <em>Add Event</em> button to allow creating new events from the user interface (call the <code>addEvent()</code> method when clicked - this is to be implemented in the upcoming steps)</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trueinitialization-on-application-launch"><a class="anchor" href="#trueinitialization-on-application-launch"></a>4.5.3. Initialization on application launch</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the <strong>MainActivity.java</strong> file.</p>
+</li>
+<li>
+<p>Add a few new attributes to the beginning of the class as helpers for persistence and error
+handling.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class MainActivity extends AppCompatActivity {
+  private String error = null;
+  // APPEND NEW CONTENT STARTING FROM HERE
+  private List&lt;String&gt; personNames = new ArrayList&lt;&gt;();
+  private ArrayAdapter&lt;String&gt; personAdapter;
+  private List&lt;String&gt; eventNames = new ArrayList&lt;&gt;();
+  private ArrayAdapter&lt;String&gt; eventAdapter;
+
+  //...
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Import missing classes (e.g. use <span class="keyseq"><kbd>Alt</kbd>+<kbd>Enter</kbd></span>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Add code to initialize the application with data from the server in the <code>onCreate()</code> method (after the auto-generated code).</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Override
+protected void onCreate(Bundle savedInstanceState) {
+  // ...
+  // INSERT TO END OF THE METHOD
+  // Add adapters to spinner lists and refresh spinner content
+  Spinner personSpinner = (Spinner) findViewById(R.id.personspinner);
+  Spinner eventSpinner = (Spinner) findViewById(R.id.eventspinner);
+
+  personAdapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_spinner_item, personNames);
+  personAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+  personSpinner.setAdapter(personAdapter);
+
+  eventAdapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_spinner_item, eventNames);
+  eventAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+  eventSpinner.setAdapter(eventAdapter);
+
+  // Get initial content for spinners
+  refreshLists(this.getCurrentFocus());
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>At this point the <code>refreshLists()</code> method is missing, this is to be implemented in the upcoming steps.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="truereactions-to-updated-data"><a class="anchor" href="#truereactions-to-updated-data"></a>4.5.4. Reactions to updated data</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the missing new method <code>refreshLists()</code> which seeks for the event and person spinners and sets their content according to the data retrieved from the server</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public void refreshLists(View view) {
+    refreshList(personAdapter ,personNames, "people");
+    refreshList(eventAdapter, eventNames, "events");
+}
+
+private void refreshList(final ArrayAdapter&lt;String&gt; adapter, final List&lt;String&gt; names, final String restFunctionName) {
+    HttpUtils.get(restFunctionName, new RequestParams(), new JsonHttpResponseHandler() {
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            names.clear();
+            names.add("Please select...");
+            for( int i = 0; i &lt; response.length(); i++){
+                try {
+                    names.add(response.getJSONObject(i).getString("name"));
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            try {
+                error += errorResponse.get("message").toString();
+            } catch (JSONException e) {
+                error += e.getMessage();
+            }
+            refreshErrorMessage();
+        }
+    });
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Implement the <code>addEvent()</code> method</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public void addEvent(View v) {
+    // start time
+    TextView tv = (TextView) findViewById(R.id.starttime);
+    String text = tv.getText().toString();
+    String comps[] = text.split(":");
+
+    int startHours = Integer.parseInt(comps[0]);
+    int startMinutes = Integer.parseInt(comps[1]);
+
+    // TODO get end time
+
+    // date
+    tv = (TextView) findViewById(R.id.newevent_date);
+    text = tv.getText().toString();
+    comps = text.split("-");
+
+    int year = Integer.parseInt(comps[2]);
+    int month = Integer.parseInt(comps[1]);
+    int day = Integer.parseInt(comps[0]);
+
+    // name
+    tv = (TextView) findViewById(R.id.newevent_name);
+    String name = tv.getText().toString();
+
+    // Reminder: calling the service looks like this:
+    // https://eventregistration-backend-123.herokuapp.com/events/testEvent?date=2013-10-23&amp;startTime=00:00&amp;endTime=23:59
+
+    RequestParams rp = new RequestParams();
+
+    NumberFormat formatter = new DecimalFormat("00");
+    rp.add("date", year + "-" + formatter.format(month) + "-" + formatter.format(day));
+    rp.add("startTime", formatter.format(startHours) + ":" + formatter.format(startMinutes));
+    // TODO add end time as parameter
+
+    HttpUtils.post("events/" + name, rp, new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            refreshErrorMessage();
+            ((TextView) findViewById(R.id.newevent_name)).setText("");
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            try {
+                error += errorResponse.get("message").toString();
+            } catch (JSONException e) {
+                error += e.getMessage();
+            }
+            refreshErrorMessage();
+        }
+    });
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: get the end time of the new event</p>
+</li>
+<li>
+<p><strong>TODO</strong>: supply the end time to the REST request as an additional parameter</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Implement the <code>register()</code> method</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public void register(View v) {
+
+    Spinner partSpinner = (Spinner) findViewById(R.id.personspinner);
+    Spinner eventSpinner = (Spinner) findViewById(R.id.eventspinner);
+
+    error = "";
+
+    // TODO issue an HTTP POST here
+    // Reminder: calling the service looks like this:
+    // https://eventregistration-backend-123.herokuapp.com/register?person=testPreson&amp;event=testEvent
+
+
+    // Set back the spinners to the initial state after posting the request
+    partSpinner.setSelection(0);
+    eventSpinner.setSelection(0);
+
+    refreshErrorMessage();
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: implement the HTTP POST part of the <code>register()</code> method on your own</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>See <a href="https://github.com/Rijul5/eventregistration3/tree/android" class="bare">https://github.com/Rijul5/eventregistration3/tree/android</a> for the complete solution of mobile frontend.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-14 10:57:03 -0400
+Last updated 2022-03-21 10:15:20 -0400
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">

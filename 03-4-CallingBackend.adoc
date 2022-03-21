@@ -76,7 +76,3 @@ createPerson: function (personName) {
 1. Run the frontend application and check that
 * New people can be added
 * They immediately appear in the people list.
-
-=== Build and Travis-CI
-
-Travis-CI supports link:https://docs.travis-ci.com/user/languages/javascript-with-nodejs[building nodejs projects]. However, we do not want to run the default `npm test` command. Instead, the build should do `npm install` only.

@@ -51,7 +51,7 @@ Update your _EventRegistration.vue_:
       <th>End</th>
       <!--<th>Edit</th>-->
     </tr>
-    <tr v-for="event in events">
+    <tr v-for="event in events" :key=event.name>
       <td>{{ event.name }}</td>
       <td>{{ event.eventDate }}</td>
       <td>{{ event.startTime }}</td>
@@ -146,7 +146,7 @@ The solution for the above bullet points (goes to _EventRegistration.vue_):
     <label>Person:     
       <select v-model="selectedPerson">
         <option disabled value="">Please select one</option>
-        <option v-for="person in persons" >
+        <option v-for="person in persons" :key=person.name >
           {{ person.name }}
         </option>
       </select>
@@ -154,7 +154,7 @@ The solution for the above bullet points (goes to _EventRegistration.vue_):
     <label>Event:     
       <select v-model="selectedEvent">
         <option disabled value="">Please select one</option>
-        <option v-for="event in events" >
+        <option v-for="event in events" :key=event.name>
           {{ event.name }}
         </option>
       </select>

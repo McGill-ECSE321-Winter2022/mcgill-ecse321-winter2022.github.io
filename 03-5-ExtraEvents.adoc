@@ -103,7 +103,6 @@ Update _EventRegistration.vue_
         <input type="time" v-model="newEvent.endTime" placeholder="HH:mm">
       </td>
       <td>
-        <button 
           <button v-bind:disabled="!newEvent.name" v-on:click="createEvent(newEvent.name, newEvent.eventDate, newEvent.startTime, newEvent.endTime)">Create</button>
       </td>
   </tr>
